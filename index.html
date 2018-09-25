@@ -4,7 +4,7 @@
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Екоголічна строна асоціації Україна-ЄС</title>
+  <title>Екологічна строна асоціації Україна-ЄС</title>
   <link rel="icon" href="img/icon.ico" type="image/x-icon">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,7 +48,7 @@
 
   <div class="jumbotron text-center">
     <h1>Україна - ЄС</h1>
-    <p>Екоголічна строна асоціації</p>
+    <p>Екологічна строна асоціації</p>
   </div>
 
   <!-- Container (About Section) -->
@@ -86,7 +86,7 @@
       <div class="col-md-9">
         <h2>Наша Ціль</h2><br>
         <h4>Залучення організацій громадянського суспільства та органів місцевого самоврядування
-          до обговорення проблеми та пошуку способів її вирішення, а також підвищення свідомості українців для сприяння виконанню
+          до обговорення екологічних проблем та пошуку способів їх вирішення, а також підвищення свідомості українців для сприяння виконанню
           екологічних норм Угоди Про Асоціацію (Глава 13 Розділу IV та Глава 6 Розділу V).</h4><br>
         <p>Зменшення споживання енергії та правильне управління відходами необхідно розпочинати
           саме з багатоквартирних будинків тому, що: 1) в багатоквартирних будинках зосереджена основна маса населення всіх без виключення
@@ -100,7 +100,7 @@
   <!-- Container (Products Section) -->
   <div id="products" class="container-fluid text-center">
     <h2>Наші Діяльність</h2>
-    <h4>Заходи і продукти підготовлені в рамках прокту</h4>
+    <h4>Заходи і продукти підготовлені в рамках проекту</h4>
     <br>
     <div class="row slideanim">
       <div class="col-md-4">
@@ -152,19 +152,19 @@
     <div class="row text-center slideanim">
       <div class="col-md-4">
         <div class="thumbnail">
-          <img src="img/lviv.jpg" alt="Lviv" width="400" height="300">
+          <img src="img/lviv.jpg" alt="Lviv" width="300" height="300">
           <h3><strong><a href="https://city-adm.lviv.ua/">Львів</a></strong></h3>
         </div>
       </div>
       <div class="col-md-4">
         <div class="thumbnail">
-          <img src="img/odesa.jpg" alt="Odesa" width="400" height="300">
+          <img src="img/odesa.jpg" alt="Odesa" width="300" height="300">
           <h3><strong><a href="http://omr.gov.ua/ua/council/">Одеса</a></strong></h3>
         </div>
       </div>
       <div class="col-md-4">
         <div class="thumbnail">
-          <img src="img/zhytomyr.jpg" alt="Zhytomyr" width="400" height="300">
+          <img src="img/zhytomyr.jpg" alt="Zhytomyr" width="300" height="300">
           <h3><strong><a href="http://zt-rada.gov.ua/">Житомир</a></strong></h3>
         </div>
       </div>
@@ -215,52 +215,43 @@
   <!-- Add Google Maps -->
   <div id="mapGoogle"></div>
   <script>
-      function initMap() {
-          var map = new google.maps.Map(document.getElementById('mapGoogle'), {
-              zoom: 12,
-              center: {lat: 49.838978, lng: 24.029050}
-          });
+    function initMap() {
+      var locations = [
+        ['вул. Князя Лева, 4а', 49.846217, 24.031000],
+        ['вул. Залізнична, 18', 49.839125, 24.000736],
+        ['вул. Коновальця, 103', 49.825177, 23.995159],
+        ['вул. Моринецька, 14а', 49.853469, 23.990654],
+        ['вул. Шевченка, 171', 49.859948, 23.970712],
+        ['Рясне-1', 49.869000, 23.956103],
+        ['Рясне-2', 49.877716, 23.939377],
+        ['вул. В. Великого, 25', 49.809083, 24.010538],
+        ['вул. Наукова, 4', 49.804702, 24.004976],
+        ['вул. Трускавецька, 502', 49.798678, 23.997264]
+      ];
 
-          // var bounds = {
-          //     north: -25.363882,
-          //     south: -31.203405,
-          //     east: 131.044922,
-          //     west: 125.244141
-          // };
+      var map = new google.maps.Map(document.getElementById('mapGoogle'), {
+        zoom: 12,
+        center: {lat: 49.838978, lng: 24.029050}
+      });
 
-          // Display the area between the location southWest and northEast.
-          // map.fitBounds(bounds);
+      var infowindow = new google.maps.InfoWindow();
 
-          // Add 5 markers to map at random locations.
-          // For each of these markers, give them a title with their index, and when
-          // they are clicked they should open an infowindow with text from a secret
-          // message.
-          // var secretMessages = ['This', 'is', 'the', 'secret', 'message'];
-          // var lngSpan = bounds.east - bounds.west;
-          // var latSpan = bounds.north - bounds.south;
-          // for (var i = 0; i < secretMessages.length; ++i) {
-          //     var marker = new google.maps.Marker({
-          //         position: {
-          //             lat: bounds.south + latSpan * Math.random(),
-          //             lng: bounds.west + lngSpan * Math.random()
-          //         },
-          //         map: map
-          //     });
-          //     attachSecretMessage(marker, secretMessages[i]);
-          // }
+      var marker, i;
+
+      for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+          map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent(locations[i][0]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
       }
-
-      // Attaches an info window to a marker with the provided message. When the
-      // marker is clicked, the info window will open with the secret message.
-      // function attachSecretMessage(marker, secretMessage) {
-      //     var infowindow = new google.maps.InfoWindow({
-      //         content: secretMessage
-      //     });
-      //
-      //     marker.addListener('click', function() {
-      //         infowindow.open(marker.get('map'), marker);
-      //     });
-      // }
+    }
   </script>
   <script async defer
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3Z5jyH41f5moyfY08tDqldz0YJTkXjyo&callback=initMap">
@@ -270,7 +261,7 @@
   <div id="contact" class="container-fluid bg-grey">
     <h2 class="text-center">Наші Контакти</h2>
     <div class="row">
-      <div class="col-sm-5">
+      <div class="col-sm-5 contacts">
         <p>Із задоволенням готові відповісти на ваші запитання.</p>
         <p><span class="glyphicon glyphicon-map-marker"></span> Львів, Україна</p>
         <p><span class="glyphicon glyphicon-phone"></span> +38-032-235-68-48</p>
